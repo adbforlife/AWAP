@@ -118,10 +118,4 @@ class Team(object):
                     res.append(possible_dirs[randint(0,3)])
         return res
 
-        
-
-
-
-
-
 
