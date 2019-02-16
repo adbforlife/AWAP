@@ -22,11 +22,13 @@ class Team(object):
         on the wiki. team_size, although passed to you as a parameter, will
         always be 4.
         """
+        print (company_info)
+
         self.board = initial_board
         self.team_size = team_size
         self.company_info = company_info
 
-        self.team_name = # Add your team name here!
+        self.team_name = "Null Graphs' Lives Matter"
 
     def step(self, visible_board, states, score):
         """
@@ -35,5 +37,11 @@ class Team(object):
         For more information on what visible_board, states, and score
         are, please look on the wiki.
         """
+        
+        return [Direction.NONE, Direction.NONE, Direction.NONE, Direction.NONE]
 
         pass
+
+
+
+
