@@ -92,6 +92,7 @@ class Team(object):
                 line_info = initial_board[i][j].get_line()
                 if (booth_info == None):
                     isLine = (line_info != None)
+                    isEnd = False
                     if (line_info != None):
                         isEnd = ((i == (endLine_loc[line_info][0][0]))
                         and (j == (endLine_loc[line_info][0][1])))
