@@ -166,8 +166,8 @@ class Team(object):
         print (graph)
         print (len(graph))
 
-        G = Graph(graph)
-        G.dijkstra(1)
+        self.graph = Graph(graph)
+        self.graph.dijkstra(1)
 
 
     # Tests if two points are adjacent 
@@ -185,6 +185,7 @@ class Team(object):
                 return True
         return False
 
+<<<<<<< HEAD
     # Find ID
     def findID(self, x, y, vertices):
         for i in range (len(vertices)):
@@ -193,6 +194,33 @@ class Team(object):
         # Not Found Error
         return -1
 
+=======
+    #Returns a new graph where the vertices are all the cells of
+    #the board. Edge weights are based on threshold for the visible
+    #5x5 board. 
+    def makeGraph(self, visible_board):
+        #New graph of vertices and their weights
+
+        #Similar to the graph previously created
+        #But weights are different, based on threshold
+        G = self.graph
+        newGraph = []
+
+        for edgelist in G.graph:
+            newEdgeList = []
+            for vertexWeight in edgelist:
+                v = vertexWeight[0]
+                v1 = v[0]
+                v2 = v[1]
+                currentTile = visible_board[v1][v2]
+                newWeight = -1
+                if (Tile.is_visible(currentTile)) newWeight = Tile.get_threshold(currentTile)
+                else newWeight = 1
+                newEdgeList.append((v, newWeight))
+            newGraph.append(newEdgeList)
+
+        self.graph = newGraph
+>>>>>>> cada7f5f3f010e881935468521e499196b2c302e
 
     def step(self, visible_board, states, score):
         """
