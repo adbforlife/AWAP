@@ -23,15 +23,44 @@ class Team(object):
         on the wiki. team_size, although passed to you as a parameter, will
         always be 4.
         """
+
         self.board = initial_board
         self.team_size = team_size
         self.company_info = company_info
 
         self.team_name = "Null Graphs' Lives Matter"
 
-        print(initial_board)
         print(team_size)
-        print(company_info)
+        print (company_info)
+        print (initial_board)
+        print (len(initial_board))
+        print (len(initial_board[0]))
+
+
+        # Information about company booth locations and line locations
+        booth_loc = {}
+        line_loc = {}
+
+        for x in (company_info):
+            booth_loc[x] = []
+            line_loc[x] = []
+        
+        print (booth_loc)
+        print (line_loc)
+
+        for i in range (len(initial_board)):
+            for j in range (len(initial_board[0])):
+                booth_info = initial_board[i][j].get_booth()
+                if(booth_info != None):
+                    booth_loc[booth_info].append([i,j])
+                line_info = initial_board[i][j].get_line()
+                if(line_info != None):
+                    line_loc[line_info].append([i, j])
+
+
+        print (booth_loc)
+        print (line_loc)
+
 
     def step(self, visible_board, states, score):
         """
@@ -63,3 +92,13 @@ class Team(object):
 
 
 
+=======
+        
+        return [Direction.RIGHT, Direction.UP, Direction.DOWN, Direction.LEFT]
+
+        pass
+
+
+
+
+>>>>>>> 87c56127d7b1b79890fb4f25e3107f5977d26416
