@@ -21,9 +21,9 @@ class Graph():
         self.graph = graph
 
     def printSolution(self, dist): 
-        print("Vertex tDistance from Source")
+        print("Vertex \tDistance from Source")
         for node in range(self.num_v): 
-            print(node,"t",dist[node]) 
+            print(node,"\t",dist[node]) 
 
     def minDist(self, dist, visited):
         minimum = float('inf')
@@ -32,7 +32,6 @@ class Graph():
             if (not visited[i]) and dist[i] < minimum:
                 minimum = dist[i]
                 minimum_index = i
-        assert minimum_index != -1
         return minimum_index
 
     def dijkstra(self, src):
@@ -42,13 +41,19 @@ class Graph():
 
         for _ in range(self.num_v):
             u = self.minDist(dist, visited)
+            if u == -1:
+                print("-1")
+                break
             visited[u] = True
 
             for v in range(self.num_v):
-                if visited[v] == False and dist[v] > dist[u] + self.graph[u][v][1]: 
-                    dist[v] = dist[u] + self.graph[u][v]
+                if visited[v]:
+                    neighbors = self.graph[v]
+                    for e in neighbors:
+                        if not visited[e[0][0]]:
+                            dist[e[0][0]] = dist[v] + e[1]
 
-        self.printSolution(self,dist)
+        self.printSolution(dist)
 
 
 class Team(object):
@@ -158,6 +163,10 @@ class Team(object):
 
         print (graph)
         print (len(graph))
+
+        G = Graph(graph)
+        G.dijkstra(1)
+
 
     # Tests if two points are adjacent 
     def nextTo(self, loc1, loc2):
