@@ -1,3 +1,4 @@
+# TEST COMMIT
 # AWAP
 Welcome to Algorithms with a Purpose! You and three of your friends really want to get some internships, but the job fairs get worse and worse every year! All you usually get is a bit of swag that you never touch after a while. Feeling down because of some disappointing results at the last job fair, everyone decides to pool all of their efforts together so that at least one person gets the gift of enlightenment - the summer internship. Armed with an unlimited data plan, you prepare to set out to your latest battlefield to see if you can use the additional information of three friends to your advantage. 
 
