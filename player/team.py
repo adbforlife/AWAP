@@ -31,7 +31,33 @@ class Team(object):
 
         print (company_info)
         print (initial_board)
-        print (team_size)
+        print (len(initial_board))
+        print (len(initial_board[0]))
+
+
+        # Information about company booth locations and line locations
+        booth_loc = {}
+        line_loc = {}
+
+        for x in (company_info):
+            booth_loc[x] = []
+            line_loc[x] = []
+        
+        print (booth_loc)
+        print (line_loc)
+
+        for i in range (len(initial_board)):
+            for j in range (len(initial_board[0])):
+                booth_info = initial_board[i][j].get_booth()
+                if(booth_info != None):
+                    booth_loc[booth_info].append([i,j])
+                line_info = initial_board[i][j].get_line()
+                if(line_info != None):
+                    line_loc[line_info].append([i, j])
+
+
+        print (booth_loc)
+        print (line_loc)
 
 
     def step(self, visible_board, states, score):
@@ -42,7 +68,7 @@ class Team(object):
         are, please look on the wiki.
         """
         
-        return [Direction.NONE, Direction.NONE, Direction.NONE, Direction.NONE]
+        return [Direction.RIGHT, Direction.UP, Direction.DOWN, Direction.LEFT]
 
         pass
 
