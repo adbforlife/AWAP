@@ -36,7 +36,9 @@ class Graph():
 
     def dijkstra(self, src):
         dist = [float('inf') for _ in range(self.num_v)]
+        paths = ['EMPTY' for _ in range(self.num_v)]
         dist[src] = 0
+        paths[src] = [self.graph[src]]
         visited = [False for _ in range(self.num_v)]
 
         for _ in range(self.num_v):
@@ -182,6 +184,14 @@ class Team(object):
             if self.nextTo(loc, boothList[i]):
                 return True
         return False
+
+    # Find ID
+    def findID(self, x, y, vertices):
+        for i in range (len(vertices)):
+            if ((vertices[i][1][0] == x) and (vertices[i][1][1] == y)):
+                return i
+        # Not Found Error
+        return -1
 
 
     def step(self, visible_board, states, score):
