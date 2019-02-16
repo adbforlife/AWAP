@@ -12,6 +12,45 @@ hengz2
 from awap2019 import Tile, Direction, State
 from random import *
 
+class Graph():
+    def __init__(self, graph):
+        """
+        :type graph: list(list(vertices))
+        """
+        self.num_v = len(graph)
+        self.graph = graph
+
+    def printSolution(self, dist): 
+        print("Vertex tDistance from Source")
+        for node in range(self.num_v): 
+            print(node,"t",dist[node]) 
+
+    def minDist(self, dist, visited):
+        minimum = float('inf')
+        minimum_index = -1
+        for i in range(self.num_v):
+            if (not visited[i]) and dist[i] < minimum:
+                minimum = dist[i]
+                minimum_index = i
+        assert minimum_index != -1
+        return minimum_index
+
+    def dijkstra(self, src):
+        dist = [float('inf') for _ in range(self.num_v)]
+        dist[src] = 0
+        visited = [False for _ in range(self.num_v)]
+
+        for _ in range(self.num_v):
+            u = self.minDist(dist, visited)
+            visited[u] = True
+
+            for v in range(self.num_v):
+                if visited[v] == False and dist[v] > dist[u] + self.graph[u][v][1]: 
+                    dist[v] = dist[u] + self.graph[u][v]
+
+        self.printSolution(self,dist)
+
+
 class Team(object):
     def __init__(self, initial_board, team_size, company_info):
         """
