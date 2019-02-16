@@ -40,10 +40,12 @@ class Team(object):
         # Information about company booth locations and line locations
         booth_loc = {}
         line_loc = {}
+        endLine_loc = {}
 
         for x in (company_info):
             booth_loc[x] = []
             line_loc[x] = []
+            endLine_loc[x] = []
         
         print (booth_loc)
         print (line_loc)
@@ -56,10 +58,40 @@ class Team(object):
                 line_info = initial_board[i][j].get_line()
                 if(line_info != None):
                     line_loc[line_info].append([i, j])
+        for x in (company_info):
+            if (len(line_loc[x]) == 1):
+                endLine_loc[x] = line_loc[x]
+            else:
+                pos1 = line_loc[x][0]
+                pos2 = line_loc[x][-1]
+                if ((self.nextBooth(pos1, booth_loc[x])) and not(self.nextBooth(pos2, booth_loc[x]))):
+                    endLine_loc[x] = [pos2]
+                elif ((self.nextBooth(pos2, booth_loc[x])) and
+                not(self.nextBooth(pos1, booth_loc[x]))):
+                    endLine_loc[x] = [pos1]
+                else:
+                    endLine_loc[x] = [pos1, pos2]
+        
 
 
         print (booth_loc)
         print (line_loc)
+        print (endLine_loc)
+
+    # Tests if two points are adjacent 
+    def nextTo(self, loc1, loc2):
+        if (loc1[0] == loc2[0]):
+            return (abs(loc1[1]-loc2[1]) == 1)
+        if (loc1[1] == loc2[1]):
+            return (abs(loc1[0]-loc2[0]) == 1)
+        return False
+        
+    # Tests if a point is next to booth
+    def nextBooth(self, loc, boothList):
+        for i in range (len(boothList)):
+            if self.nextTo(loc, boothList[i]):
+                return True
+        return False
 
 
     def step(self, visible_board, states, score):
@@ -80,16 +112,5 @@ class Team(object):
                 else:
                     res.append(possible_dirs[randint(0,3)])
         return res
-
-
-
-
-
-
-
-
-
-
-
 
 
