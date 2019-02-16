@@ -34,10 +34,10 @@ class Team(object):
 
 
         print(team_size)
-        print (company_info)
-        print (initial_board)
-        print (len(initial_board))
-        print (len(initial_board[0]))
+        print(company_info)
+        print(initial_board)
+        print(len(initial_board))
+        print(len(initial_board[0]))
 
 
         # Information about company booth locations and line locations
@@ -67,7 +67,8 @@ class Team(object):
             else:
                 pos1 = line_loc[x][0]
                 pos2 = line_loc[x][-1]
-                if ((self.nextBooth(pos1, booth_loc[x])) and not(self.nextBooth(pos2, booth_loc[x]))):
+                if ((self.nextBooth(pos1, booth_loc[x])) and 
+                not(self.nextBooth(pos2, booth_loc[x]))):
                     endLine_loc[x] = [pos2]
                 elif ((self.nextBooth(pos2, booth_loc[x])) and
                 not(self.nextBooth(pos1, booth_loc[x]))):
