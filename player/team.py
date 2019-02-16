@@ -186,10 +186,14 @@ class Team(object):
         return False
 
     # Find ID
-    def findID(self, x, y, vertices):
-        for i in range (len(vertices)):
-            if ((vertices[i][1][0] == x) and (vertices[i][1][1] == y)):
-                return i
+    def findID(self, x, y):
+        graph = self.graph
+        for i in range (len(graph)):
+            edgeList = graph[i]
+            for j in range (len(edgeList)):
+                vertex = edgeList[j][0]
+                if (vertex[1][0] == x) and (vertex[1][1] == y):
+                    return vertex[0]
         # Not Found Error
         return -1
 
