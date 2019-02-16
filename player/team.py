@@ -81,7 +81,6 @@ class Team(object):
                     res.append(possible_dirs[randint(0,3)])
         return res
 
-        
 
 
 
@@ -92,13 +91,5 @@ class Team(object):
 
 
 
-=======
-        
-        return [Direction.RIGHT, Direction.UP, Direction.DOWN, Direction.LEFT]
-
-        pass
 
 
-
-
->>>>>>> 87c56127d7b1b79890fb4f25e3107f5977d26416
