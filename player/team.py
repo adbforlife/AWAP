@@ -64,7 +64,8 @@ class Team(object):
             else:
                 pos1 = line_loc[x][0]
                 pos2 = line_loc[x][-1]
-                if ((self.nextBooth(pos1, booth_loc[x])) and not(self.nextBooth(pos2, booth_loc[x]))):
+                if ((self.nextBooth(pos1, booth_loc[x])) and 
+                not(self.nextBooth(pos2, booth_loc[x]))):
                     endLine_loc[x] = [pos2]
                 elif ((self.nextBooth(pos2, booth_loc[x])) and
                 not(self.nextBooth(pos1, booth_loc[x]))):
