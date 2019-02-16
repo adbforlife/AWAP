@@ -69,11 +69,14 @@ class Team(object):
 
         self.team_name = "Null Graphs' Lives Matter"
 
+        self.comp_visited = set([]) #set of companies visited
+
+
         print(team_size)
-        print (company_info)
-        print (initial_board)
-        print (len(initial_board))
-        print (len(initial_board[0]))
+        print(company_info)
+        print(initial_board)
+        print(len(initial_board))
+        print(len(initial_board[0]))
 
 
         # Information about company booth locations and line locations
@@ -103,7 +106,8 @@ class Team(object):
             else:
                 pos1 = line_loc[x][0]
                 pos2 = line_loc[x][-1]
-                if ((self.nextBooth(pos1, booth_loc[x])) and not(self.nextBooth(pos2, booth_loc[x]))):
+                if ((self.nextBooth(pos1, booth_loc[x])) and 
+                not(self.nextBooth(pos2, booth_loc[x]))):
                     endLine_loc[x] = [pos2]
                 elif ((self.nextBooth(pos2, booth_loc[x])) and
                 not(self.nextBooth(pos1, booth_loc[x]))):
@@ -116,6 +120,44 @@ class Team(object):
         print (booth_loc)
         print (line_loc)
         print (endLine_loc)
+
+        vertices = []
+        # Create a list of vertices
+        # ((x, y), if start line, if line)
+        counter = 0
+        for i in range (len(initial_board)):
+            for j in range (len(initial_board[0])):
+                booth_info = initial_board[i][j].get_booth()
+                line_info = initial_board[i][j].get_line()
+                if (booth_info == None):
+                    isLine = (line_info != None)
+                    isEnd = False
+                    if (line_info != None):
+                        isEnd = ((i == (endLine_loc[line_info][0][0]))
+                        and (j == (endLine_loc[line_info][0][1])))
+                    vertex = (counter, (i, j), isLine, isEnd)
+                    vertices.append(vertex)
+                    counter += 1
+        print (vertices)
+
+
+        # Create graph
+        graph = []
+        for i in range (len(vertices)):
+            toAdd = []
+            a = vertices[i]
+            a1 = a[1][0]
+            a2 = a[1][1]
+            for j in range (len(vertices)):
+                b = vertices[j]
+                b1 = b[1][0]
+                b2 = b[1][1]
+                if self.nextTo([a1, a2], [b1, b2]):
+                    toAdd.append((b, 1))
+            graph.append(toAdd)
+
+        print (graph)
+        print (len(graph))
 
     # Tests if two points are adjacent 
     def nextTo(self, loc1, loc2):
@@ -146,8 +188,9 @@ class Team(object):
             if s.line_pos != -1:
                 res.append(Direction.NONE)
             else:
-                if Tile.is_end_of_line(visible_board[s.x][s.y]):
+                if Tile.is_end_of_line(visible_board[s.x][s.y]) and Tile.get_booth(visible_board[s.x][s.y]) not in self.comp_visited:
                     res.append(Direction.ENTER)
+                    self.comp_visited.add(Tile.get_booth(visible_board[s.x][s.y]))
                 else:
                     res.append(possible_dirs[randint(0,3)])
         return res
