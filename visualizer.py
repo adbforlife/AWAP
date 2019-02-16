@@ -14,7 +14,7 @@ import sys
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string("board_directory", "boards/", "Directory of boards.")
-flags.DEFINE_string("board_file", "gates4", "The board file to read from.")
+flags.DEFINE_string("board_file", "tiny", "The board file to read from.")
 flags.DEFINE_string("log_directory", "logs/", "Directory of logs.")
 flags.DEFINE_string("log_file", "out", "Log file to read from.")
 
@@ -325,4 +325,3 @@ anim = animation.FuncAnimation(fig, animate,
 
 #anim.save('output/animation.gif', writer='imagemagick')
 plt.show()
-
