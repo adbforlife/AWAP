@@ -5,10 +5,9 @@ Write the __init__ and the step functions. Further explanations
 about these functions are detailed in the wiki.
 
 List your Andrew ID's up here!
-andrewid1
-andrewid2
-andrewid3
-andrewid4
+amahanka
+sixiangg
+hengz2
 """
 from awap2019 import Tile, Direction, State
 
