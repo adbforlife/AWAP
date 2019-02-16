@@ -22,13 +22,17 @@ class Team(object):
         on the wiki. team_size, although passed to you as a parameter, will
         always be 4.
         """
-        print (company_info)
 
         self.board = initial_board
         self.team_size = team_size
         self.company_info = company_info
 
         self.team_name = "Null Graphs' Lives Matter"
+
+        print (company_info)
+        print (initial_board)
+        print (team_size)
+
 
     def step(self, visible_board, states, score):
         """
