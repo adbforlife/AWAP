@@ -34,10 +34,10 @@ class Team(object):
 
 
         print(team_size)
-        print (company_info)
-        print (initial_board)
-        print (len(initial_board))
-        print (len(initial_board[0]))
+        print(company_info)
+        print(initial_board)
+        print(len(initial_board))
+        print(len(initial_board[0]))
 
 
         # Information about company booth locations and line locations
