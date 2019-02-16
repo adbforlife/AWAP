@@ -185,7 +185,6 @@ class Team(object):
                 return True
         return False
 
-<<<<<<< HEAD
     # Find ID
     def findID(self, x, y, vertices):
         for i in range (len(vertices)):
@@ -194,7 +193,6 @@ class Team(object):
         # Not Found Error
         return -1
 
-=======
     #Returns a new graph where the vertices are all the cells of
     #the board. Edge weights are based on threshold for the visible
     #5x5 board. 
@@ -220,7 +218,6 @@ class Team(object):
             newGraph.append(newEdgeList)
 
         self.graph = newGraph
->>>>>>> cada7f5f3f010e881935468521e499196b2c302e
 
     def step(self, visible_board, states, score):
         """
