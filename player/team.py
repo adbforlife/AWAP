@@ -11,6 +11,7 @@ hengz2
 """
 from awap2019 import Tile, Direction, State
 from random import *
+from sets import *
 
 class Team(object):
     def __init__(self, initial_board, team_size, company_info):
@@ -29,6 +30,9 @@ class Team(object):
         self.company_info = company_info
 
         self.team_name = "Null Graphs' Lives Matter"
+
+        self.comp_visited = Set([]) #set of companies visited
+
 
         print(team_size)
         print (company_info)
@@ -107,8 +111,9 @@ class Team(object):
             if s.line_pos != -1:
                 res.append(Direction.NONE)
             else:
-                if Tile.is_end_of_line(visible_board[s.x][s.y]):
+                if Tile.is_end_of_line(visible_board[s.x][s.y]) && Tile.get_booth(visible_board[s.x][s.y]) not in self.comp_visited:
                     res.append(Direction.ENTER)
+                    self.comp_visited.add(Tile.get_booth(visible_board[s.x][s.y]))
                 else:
                     res.append(possible_dirs[randint(0,3)])
         return res
